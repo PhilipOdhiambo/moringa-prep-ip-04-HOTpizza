@@ -30,3 +30,8 @@
     text-align: center;
     letter-spacing: 5px;
 }
+
+form .size .form-check {
+    display: inline-block;
+    margin: 20px;
+}
