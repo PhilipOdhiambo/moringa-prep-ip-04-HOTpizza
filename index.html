@@ -217,7 +217,7 @@
                 </div>
                 <!---------------- Cart -------- -->
                 <h2>Cart</h2>
-                <div class="row">
+                <div class="row cart">
                     <div class="col-6">
                         <table class="table">
                             <thead>
@@ -264,6 +264,60 @@
                         </table>
                     </div>
                 </div>
+                <!-- Order Summary and alert box -->
+                <h2>Order Summary</h2>
+                <div class="row summary">
+                    <div class="col-4">
+                        <div class="row orders-cost">
+                            <div class="col-6">
+                                <label class="form-label" for="orders-cost"
+                                    >Cost of Order:</label
+                                >
+                            </div>
+                            <div class="col-6">
+                                <input
+                                    class="form-control"
+                                    type="number"
+                                    id="orders-cost"
+                                    readonly
+                                />
+                            </div>
+                        </div>
+                        <div class="row delivery-cost">
+                            <div class="col-6">
+                                <label class="form-label" for="delivery-cost"
+                                    >Cost of Delivery:</label
+                                >
+                            </div>
+                            <div class="col-6">
+                                <input
+                                    class="form-control"
+                                    type="number"
+                                    id="delivery-cost"
+                                    readonly
+                                />
+                            </div>
+                        </div>
+                        <div class="row total-cost">
+                            <div class="col-6">
+                                <label class="form-label" for="total-cost"
+                                    >ORDER TOTAL:</label
+                                >
+                            </div>
+                            <div class="col-6">
+                                <input
+                                    class="form-control"
+                                    type="number"
+                                    id="total-cost"
+                                    readonly
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-5 alert-box"></div>
+                </div>
+                <!-- Submit order -->
+                <button class="btn btn-success">Submit</button>
             </div>
         </section>
 
