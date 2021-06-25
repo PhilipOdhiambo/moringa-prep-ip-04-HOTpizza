@@ -46,10 +46,25 @@ Pizza.prototype.cost = function () {
         costFactor = 1;
     }
 
-    var crustCost = this.crust.crustCost * costFactor * this.quantity;
+    var crustCost = this.crust.cost * costFactor * this.quantity;
     var toppingsCost =
         this.toppings.reduce((sum, topping) => sum + topping.cost) *
         costFactor *
         this.quantity;
     return crustCost + toppingsCost;
 };
+
+/* ----------------------------------- Data  ----------------------------- */
+
+var crusts = [
+    { name: "crispy", cost: 200 },
+    { name: "stuffed", cost: 200 },
+    { name: "gluten-free", cost: 200 },
+];
+
+var toppings = [
+    { name: "chicken", cost: 300 },
+    { name: "mushroom", cost: 300 },
+    { name: "cucumber", cost: 300 },
+    { name: "tomato", cost: 300 },
+];
