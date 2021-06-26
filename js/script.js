@@ -22,7 +22,7 @@ Order.prototype.orderTotal = function () {};
 /* ---------- orderItem (PIZZA) ------------- */
 
 // OrderItem Constructor
-function OrderItem(size, crust, toppings, quantity) {
+function OrderItem(size, crust, toppings, quantity = 1) {
     this.size = size;
     this.crust = {
         crustName: crust.name,
@@ -73,4 +73,11 @@ var toppings = [
 
 /* -------------------- Frontend Logic -------------------------- */
 
-$(document).ready(function () {});
+$(document).ready(function () {
+    $("#form-order .input").on("change", function () {
+        // Calculate orderItem cost
+        var pizzaSize = $("#form-order .input[name=size]:checked").val();
+        var crustType = $("#form-order .input[name=crust]").val();
+        var orderQty = $("#form-order .input[name=order-qty]").val();
+    });
+});

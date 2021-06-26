@@ -58,15 +58,17 @@
                 <h2>ORDER</h2>
                 <div class="row">
                     <div class="col-6">
-                        <form action="">
+                        <!------------------ Order form ---------------- -->
+                        <form id="form-order" action="">
                             <span>Select Pizza Size:</span>
                             <div class="row size">
                                 <div class="col-12">
                                     <div class="form-check">
                                         <input
-                                            class="form-check-input"
+                                            class="input form-check-input"
                                             type="radio"
                                             name="size"
+                                            value="large"
                                             id="size-large"
                                         />
                                         <label
@@ -78,9 +80,10 @@
                                     </div>
                                     <div class="form-check">
                                         <input
-                                            class="form-check-input"
+                                            class="input form-check-input"
                                             type="radio"
                                             name="size"
+                                            value="medium"
                                             id="size-medium"
                                         />
                                         <label
@@ -92,9 +95,10 @@
                                     </div>
                                     <div class="form-check">
                                         <input
-                                            class="form-check-input"
+                                            class="input form-check-input"
                                             type="radio"
                                             name="size"
+                                            value="small"
                                             id="size-small"
                                         />
                                         <label
@@ -110,7 +114,7 @@
                                 >Select Crust type:</label
                             >
                             <select
-                                class="form-control"
+                                class="input crust form-control"
                                 name="crust"
                                 id="crust"
                             >
@@ -124,7 +128,7 @@
                                 <div class="col-12">
                                     <div class="form-check">
                                         <input
-                                            class="topping"
+                                            class="input topping"
                                             type="checkbox"
                                             id="topping-mushroom"
                                         />
@@ -137,7 +141,7 @@
                                     </div>
                                     <div class="form-check">
                                         <input
-                                            class="topping"
+                                            class="input topping"
                                             type="checkbox"
                                             id="topping-tomato"
                                         />
@@ -150,7 +154,7 @@
                                     </div>
                                     <div class="form-check">
                                         <input
-                                            class="topping"
+                                            class="input topping"
                                             type="checkbox"
                                             id="topping-chicken"
                                         />
@@ -163,7 +167,7 @@
                                     </div>
                                     <div class="form-check">
                                         <input
-                                            class="topping"
+                                            class="input topping"
                                             type="checkbox"
                                             id="topping-sausage"
                                         />
@@ -176,7 +180,7 @@
                                     </div>
                                     <div class="form-check">
                                         <input
-                                            class="topping"
+                                            class="input topping"
                                             type="checkbox"
                                             id="topping-cucumber"
                                         />
@@ -191,28 +195,26 @@
                             </div>
                             <div class="row">
                                 <div class="col-6">
-                                    <label class="form-label" for="num-orders"
+                                    <label class="form-label" for="order-qty"
                                         >Number of Orders</label
                                     >
                                     <input
                                         type="number"
-                                        name="num-orders"
-                                        id="num-orders"
+                                        class="input num-orders"
+                                        name="order-qty"
+                                        id="order-qty"
                                         placeholder="1"
+                                        min="1"
                                     />
                                 </div>
                                 <div class="col-6">
                                     <label for="price">Price(Ksh): </label>
-                                    <input
-                                        type="number"
-                                        name=""
-                                        id="price"
-                                        readonly
-                                    />
+                                    <input type="number" id="price" readonly />
                                 </div>
                             </div>
                             <button class="btn btn-primary">Add to cart</button>
                         </form>
+                        <!-------------- End  order-form -->
                     </div>
                 </div>
                 <!---------------- Cart -------- -->
