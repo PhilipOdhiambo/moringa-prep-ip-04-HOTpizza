@@ -31,11 +31,9 @@ function OrderItem(size, crust, toppings, quantity = 1) {
 
 /* OrderItem Methods   */
 
-OrderItem.prototype.orderCost = function () {
-    var costFactor;
-    if (this.size === "small") {
-        costFactor = 1;
-    } else if (this.size === "medium") {
+OrderItem.prototype.orderItemCost = function () {
+    var costFactor = 1;
+    if (this.size === "medium") {
         costFactor = 1.5;
     } else if (this.size === "large") {
         costFactor = 1.8;
@@ -74,7 +72,8 @@ var toppings = [
 /* -------------------- Frontend Logic -------------------------- */
 
 $(document).ready(function () {
-    /* Recalculate orderCost when any form input changes */
+    var orderInstance;
+    /* update orderInstance when form inputs change*/
     $("#form-order .input").on("change", function () {
         var pizzaSize = $("#form-order .input[name=size]:checked").val();
         var crustType = $("#form-order .input[name=crust]").val();
@@ -90,6 +89,24 @@ $(document).ready(function () {
             parseInt(orderQty)
         );
 
-        console.log(orderItem.orderCost());
+        orderInstance = orderItem;
+    });
+
+    /* Add orderItem to cart array when button is clicked */
+    $("#add-to-cart").click(function (e) {
+        e.preventDefault();
+        $("table tbody").append(
+            ` <tr>
+                    <th scope="row">3</th>
+                    <td><button class="btn">Romove</button></td>
+                    <td>
+                        Pizza Crispy
+                        LARGE,Topping:(Tomato,Cucumber)
+                    </td>
+                    <td><input type="number" min="1" /></td>
+                    <td>1000</td>
+                </tr>
+            `
+        );
     });
 });
