@@ -79,5 +79,11 @@ $(document).ready(function () {
         var pizzaSize = $("#form-order .input[name=size]:checked").val();
         var crustType = $("#form-order .input[name=crust]").val();
         var orderQty = $("#form-order .input[name=order-qty]").val();
+        var toppings = [];
+        $("#form-order .input[name=topping]:checked").each(function () {
+            toppings.push(this.value);
+        });
+        console.log(toppings);
+        //const orderItem = new OrderItem(pizzaSize, crustType,)
     });
 });
