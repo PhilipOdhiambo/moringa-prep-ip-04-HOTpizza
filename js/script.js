@@ -24,32 +24,32 @@ Order.prototype.orderTotal = function () {};
 // OrderItem Constructor
 function OrderItem(size, crust, toppings, quantity = 1) {
     this.size = size;
-    this.crust = {
-        crustName: crust.name,
-        crustCost: crust.name,
-    };
+    this.crust = crust;
     this.toppings = toppings;
     this.quantity = quantity;
 }
 
 /* OrderItem Methods   */
 
-OrderItem.prototype.cost = function () {
+OrderItem.prototype.orderCost = function () {
     var costFactor;
     if (this.size === "small") {
         costFactor = 1;
     } else if (this.size === "medium") {
         costFactor = 1.5;
-    } else {
-        costFactor = 1;
+    } else if (this.size === "large") {
+        costFactor = 1.8;
     }
 
-    var crustCost = this.crust.cost * costFactor * this.quantity;
-    var toppingsCost =
-        this.toppings.reduce((sum, topping) => sum + topping.cost) *
-        costFactor *
-        this.quantity;
-    return crustCost + toppingsCost;
+    var crust = crusts.find((crust) => crust.name === this.crust);
+    var crustCost = crust ? crust.cost : 0;
+    var toppingsCost = 0;
+    this.toppings.forEach((e) => {
+        let cost = toppings.find((topping) => topping.name === e).cost;
+        toppingsCost += cost;
+    });
+
+    return (crustCost + toppingsCost) * costFactor * this.quantity;
 };
 
 /* ----------------------------------- Data  ----------------------------- */
@@ -74,16 +74,22 @@ var toppings = [
 /* -------------------- Frontend Logic -------------------------- */
 
 $(document).ready(function () {
+    /* Recalculate orderCost when any form input changes */
     $("#form-order .input").on("change", function () {
-        // Calculate orderItem cost
         var pizzaSize = $("#form-order .input[name=size]:checked").val();
         var crustType = $("#form-order .input[name=crust]").val();
-        var orderQty = $("#form-order .input[name=order-qty]").val();
         var toppings = [];
         $("#form-order .input[name=topping]:checked").each(function () {
             toppings.push(this.value);
         });
-        console.log(toppings);
-        //const orderItem = new OrderItem(pizzaSize, crustType,)
+        var orderQty = $("#form-order .input[name=order-qty]").val();
+        const orderItem = new OrderItem(
+            pizzaSize,
+            crustType,
+            toppings,
+            parseInt(orderQty)
+        );
+
+        console.log(orderItem.orderCost());
     });
 });
