@@ -65,6 +65,7 @@ var toppings = [
     { name: "mushroom", cost: 300 },
     { name: "cucumber", cost: 300 },
     { name: "tomato", cost: 300 },
+    { name: "sausage", cost: 300 },
 ];
 
 /* ================================= FRONTEND ======================= */
@@ -76,7 +77,7 @@ var toppings = [
 $(document).ready(function () {
     var order = new Order();
     var orderItem;
-    /* update orderItemInstance when form inputs change*/
+    /* update orderItem when any form input change*/
     $("#form-order .input").on("change", function () {
         var pizzaSize = $("#form-order .input[name=size]:checked").val();
         var crustType = $("#form-order .input[name=crust]").val();
@@ -91,29 +92,46 @@ $(document).ready(function () {
             toppings,
             parseInt(orderQty)
         );
-
+        //display orderItem cost
+        $("#price").val(newOrderItem.orderItemCost());
+        // Point order Item to newOrderItem
         orderItem = newOrderItem;
     });
 
-    /* Add orderItem to cart array when button is clicked */
+    /* Add orderItem to cart when button is clicked */
     $("#add-to-cart").click(function (e) {
         e.preventDefault();
         order.orderItems.push(orderItem);
-        $("table tbody").append(
-            ` <tr>
+        $("table tbody")
+            .append(
+                ` <tr>
                     <th scope="row">${order.orderItems.length}</th>
-                    <td><button class="btn">Romove</button></td>
+                    <td><button class="remove btn">remove</button></td>
                     <td>
                         Pizza ${orderItem.crust}
                         LARGE,Topping:[${orderItem.toppings.join(", ")}]
                     </td>
-                    <td><input type="number" min="1" value="${
+                    <td><input class="qty" type="number" min="1" value="${
                         orderItem.quantity
                     }" /></td>
-                    <td>${orderItem.orderItemCost()}</td>
+                    <td class="cost">${orderItem.orderItemCost()}</td>
                 </tr>
             `
-        );
-        console.log(order);
+            )
+            .ready(function () {
+                const removeBnt = $("tbody tr").last().find(".btn.remove");
+                const itemQty = $("tbody tr").last().find(".qty");
+                const itemCost = $("tbody tr").last().find(".cost");
+
+                let unitCost =
+                    parseInt(itemCost.text()) / parseInt(itemQty.val());
+
+                removeBnt.click(function () {
+                    $("tbody tr").last().remove();
+                });
+                itemQty.on("change", function () {
+                    itemCost.text($(this).val() * unitCost);
+                });
+            });
     });
 });
