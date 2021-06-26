@@ -7,17 +7,38 @@ function Order() {
     this.orderDate = "";
     this.orderItems = [];
     this.delivery = {
-        deliveryContact: "",
-        deliveryAdress: "",
+        deliveryContact: null,
+        deliveryAdress: null,
+        deliveryPhone: null,
         deliveryCost: 0,
     };
 }
 
 /* Order Methods  */
 
-Order.prototype.orderItemsCost = function () {};
+Order.prototype.orderSummary = function () {
+    let itemsTotal = this.orderItems.reduce(
+        (sum, item) => sum + item.orderItemCost()
+    );
 
-Order.prototype.orderTotal = function () {};
+    let deliveryCost = this.delivery.deliveryCost
+        ? this.delivery.deliveryCost
+        : 0;
+
+    let orderTotal = itemsTotal + deliveryCost;
+    let deliveryAdress = "";
+    if (this.deliveryPhone) {
+        deliveryAdress = `To: ${this.delivery.deliveryContact}
+             Phone: ${this.delivery.deliveryPhone}
+             Address: ${this.delivery.deliveryAdress}
+            `;
+    }
+    return {
+        itemsTotal: itemsTotal,
+        orderTotal: orderTotal,
+        deliveryAdress: deliveryAdress,
+    };
+};
 
 /* ---------- orderItem (PIZZA) ------------- */
 
@@ -71,6 +92,8 @@ var toppings = [
 /* ================================= FRONTEND ======================= */
 
 /* Helper Functions */
+
+function orderSummary(order) {}
 
 /* -------------------- Frontend Logic -------------------------- */
 
