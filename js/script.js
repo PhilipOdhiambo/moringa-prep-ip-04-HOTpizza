@@ -4,7 +4,7 @@
 
 // Order Constucter
 function Order() {
-    this.orderDate = new Date();
+    this.orderDate = "";
     this.orderItems = [];
     this.delivery = {
         deliveryContact: "",
@@ -42,10 +42,12 @@ OrderItem.prototype.orderItemCost = function () {
     var crust = crusts.find((crust) => crust.name === this.crust);
     var crustCost = crust ? crust.cost : 0;
     var toppingsCost = 0;
-    this.toppings.forEach((e) => {
-        let cost = toppings.find((topping) => topping.name === e).cost;
-        toppingsCost += cost;
-    });
+    if (this.toppings) {
+        this.toppings.forEach((e) => {
+            let cost = toppings.find((topping) => topping.name === e).cost;
+            toppingsCost += cost;
+        });
+    }
 
     return (crustCost + toppingsCost) * costFactor * this.quantity;
 };
@@ -72,8 +74,9 @@ var toppings = [
 /* -------------------- Frontend Logic -------------------------- */
 
 $(document).ready(function () {
-    var orderInstance;
-    /* update orderInstance when form inputs change*/
+    var order = new Order();
+    var orderItem;
+    /* update orderItemInstance when form inputs change*/
     $("#form-order .input").on("change", function () {
         var pizzaSize = $("#form-order .input[name=size]:checked").val();
         var crustType = $("#form-order .input[name=crust]").val();
@@ -82,31 +85,35 @@ $(document).ready(function () {
             toppings.push(this.value);
         });
         var orderQty = $("#form-order .input[name=order-qty]").val();
-        const orderItem = new OrderItem(
+        const newOrderItem = new OrderItem(
             pizzaSize,
             crustType,
             toppings,
             parseInt(orderQty)
         );
 
-        orderInstance = orderItem;
+        orderItem = newOrderItem;
     });
 
     /* Add orderItem to cart array when button is clicked */
     $("#add-to-cart").click(function (e) {
         e.preventDefault();
+        order.orderItems.push(orderItem);
         $("table tbody").append(
             ` <tr>
-                    <th scope="row">3</th>
+                    <th scope="row">${order.orderItems.length}</th>
                     <td><button class="btn">Romove</button></td>
                     <td>
-                        Pizza Crispy
-                        LARGE,Topping:(Tomato,Cucumber)
+                        Pizza ${orderItem.crust}
+                        LARGE,Topping:[${orderItem.toppings.join(", ")}]
                     </td>
-                    <td><input type="number" min="1" /></td>
-                    <td>1000</td>
+                    <td><input type="number" min="1" value="${
+                        orderItem.quantity
+                    }" /></td>
+                    <td>${orderItem.orderItemCost()}</td>
                 </tr>
             `
         );
+        console.log(order);
     });
 });
