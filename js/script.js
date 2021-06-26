@@ -5,7 +5,7 @@
 // Order Constucter
 function Order() {
     this.orderDate = new Date();
-    this.orderDetails = [];
+    this.orderItems = [];
     this.delivery = {
         deliveryContact: "",
         deliveryAdress: "",
@@ -13,18 +13,16 @@ function Order() {
     };
 }
 
-/* ---------- Order Methods ------------- */
+/* Order Methods  */
 
-// orderDetails cost summary
-Order.prototype.orderDetailsCost = function () {};
+Order.prototype.orderItemsCost = function () {};
 
-// Order grand total
-Order.prototype.grandTotal = function () {};
+Order.prototype.orderTotal = function () {};
 
-/* ---------- orderDetail (PIZZA) ------------- */
+/* ---------- orderItem (PIZZA) ------------- */
 
-// Pizza Constructor
-function Pizza(size, crust, toppings, quantity) {
+// OrderItem Constructor
+function OrderItem(size, crust, toppings, quantity) {
     this.size = size;
     this.crust = {
         crustName: crust.name,
@@ -34,9 +32,9 @@ function Pizza(size, crust, toppings, quantity) {
     this.quantity = quantity;
 }
 
-// Pizza methods
+/* OrderItem Methods   */
 
-Pizza.prototype.cost = function () {
+OrderItem.prototype.cost = function () {
     var costFactor;
     if (this.size === "small") {
         costFactor = 1;
@@ -68,3 +66,11 @@ var toppings = [
     { name: "cucumber", cost: 300 },
     { name: "tomato", cost: 300 },
 ];
+
+/* ================================= FRONTEND ======================= */
+
+/* Helper Functions */
+
+/* -------------------- Frontend Logic -------------------------- */
+
+$(document).ready(function () {});
