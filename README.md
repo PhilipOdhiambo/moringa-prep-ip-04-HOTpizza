@@ -38,7 +38,7 @@ To get install on your machine follow these steps:
 
 ## Known bugs
 
-If you click add-to-cart before any field is selected your machine will freeze untill you reload the page.
+If you click add-to-cart before any field is selected your page will freez. Just reload it and start making your order.
 
 ## CONTACT AND SUPPORT
 In case of bugs, collaboration or support, please contact me through email: *jofonowino@gmail.com*
