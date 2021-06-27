@@ -7,34 +7,35 @@ function Order() {
     this.orderDate = "";
     this.orderItems = [];
     this.delivery = {
-        deliveryContact: null,
-        deliveryAdress: null,
+        deliveryContact: "",
+        deliveryAdress: "",
         deliveryPhone: null,
-        deliveryCost: 0,
+        deliveryCost: null,
     };
 }
 
 /* Order Methods  */
 
 Order.prototype.orderSummary = function () {
-    let itemsTotal = this.orderItems.reduce(
-        (sum, item) => sum + item.orderItemCost()
-    );
+    let orderItemsTotal = 0;
+    if (this.orderItems.length > 0) {
+        this.orderItems.forEach((item) => {
+            orderItemsTotal += item.orderItemCost();
+        });
+    }
 
-    let deliveryCost = this.delivery.deliveryCost
+    let deliveryCost = !(this.delivery.deliveryCost === null)
         ? this.delivery.deliveryCost
         : 0;
+    let orderTotal = orderItemsTotal + deliveryCost;
 
-    let orderTotal = itemsTotal + deliveryCost;
     let deliveryAdress = "";
-    if (this.deliveryPhone) {
-        deliveryAdress = `To: ${this.delivery.deliveryContact}
-             Phone: ${this.delivery.deliveryPhone}
-             Address: ${this.delivery.deliveryAdress}
-            `;
+    if (!(this.delivery.deliveryPhone === null)) {
+        deliveryAdress = `To: ${this.delivery.deliveryContact} Phone: ${this.delivery.deliveryPhone} Address: ${this.delivery.deliveryAdress}`;
     }
     return {
-        itemsTotal: itemsTotal,
+        itemsTotal: orderItemsTotal,
+        deliveryCost: deliveryCost,
         orderTotal: orderTotal,
         deliveryAdress: deliveryAdress,
     };
@@ -60,8 +61,9 @@ OrderItem.prototype.orderItemCost = function () {
         costFactor = 1.8;
     }
 
-    var crust = crusts.find((crust) => crust.name === this.crust);
-    var crustCost = crust ? crust.cost : 0;
+    var crustCost = this.crust
+        ? crusts.find((crust) => crust.name === this.crust).cost
+        : 0;
     var toppingsCost = 0;
     if (this.toppings) {
         this.toppings.forEach((e) => {
@@ -93,68 +95,103 @@ var toppings = [
 
 /* Helper Functions */
 
-function orderSummary(order) {}
+function showOrderSummary(order) {
+    $("#orders-cost").val(order.orderSummary().itemsTotal);
+    $("#delivery-cost").val(order.orderSummary().deliveryCost);
+    $("#total-cost").val(order.orderSummary().orderTotal);
+}
 
-/* -------------------- Frontend Logic -------------------------- */
+function createTableRow(data) {
+    $("tbody").append(
+        ` <tr>
+                    <th scope="row">$</th>
+                    <td><button class="remove btn">remove</button></td>
+                    <td>
+                        Pizza ${data.crust}
+                        ${data.size},Topping:[${data.toppings.join(", ")}]
+                    </td>
+                    <td><input class="qty" type="number" min="1" value="${
+                        data.quantity
+                    }" /></td>
+                    <td class="cost">${data.orderItemCost()}</td>
+                </tr>
+            `
+    );
+}
+
+/* -------------------- Logic -------------------------- */
 
 $(document).ready(function () {
-    var order = new Order();
-    var orderItem;
+    // Inputs
+    var crustInput = $("#form-order .input[name=crust]");
+    var quantityInput = $("#form-order .input[name=order-qty]");
+
+    // Outputs
+    var priceDispay = $("#price");
+
+    // Data
+    const order = new Order();
+    const orderItems = order.orderItems;
+    let activeItem;
+
     /* update orderItem when any form input change*/
+
     $("#form-order .input").on("change", function () {
-        var pizzaSize = $("#form-order .input[name=size]:checked").val();
-        var crustType = $("#form-order .input[name=crust]").val();
         var toppings = [];
+
         $("#form-order .input[name=topping]:checked").each(function () {
             toppings.push(this.value);
         });
-        var orderQty = $("#form-order .input[name=order-qty]").val();
-        const newOrderItem = new OrderItem(
-            pizzaSize,
-            crustType,
+
+        var orderQty = parseInt(quantityInput.val());
+        var sizeInput = $("#form-order .input[name=size]:checked").val();
+        const changedItem = new OrderItem(
+            sizeInput,
+            crustInput.val(),
             toppings,
-            parseInt(orderQty)
+            orderQty
         );
-        //display orderItem cost
-        $("#price").val(newOrderItem.orderItemCost());
-        // Point order Item to newOrderItem
-        orderItem = newOrderItem;
+        // Update price display
+        priceDispay.val(changedItem.orderItemCost());
+        // update active item
+        activeItem = changedItem;
     });
 
     /* Add orderItem to cart when button is clicked */
+
     $("#add-to-cart").click(function (e) {
         e.preventDefault();
-        order.orderItems.push(orderItem);
-        $("table tbody")
-            .append(
-                ` <tr>
-                    <th scope="row">${order.orderItems.length}</th>
-                    <td><button class="remove btn">remove</button></td>
-                    <td>
-                        Pizza ${orderItem.crust}
-                        LARGE,Topping:[${orderItem.toppings.join(", ")}]
-                    </td>
-                    <td><input class="qty" type="number" min="1" value="${
-                        orderItem.quantity
-                    }" /></td>
-                    <td class="cost">${orderItem.orderItemCost()}</td>
-                </tr>
-            `
-            )
-            .ready(function () {
-                const removeBnt = $("tbody tr").last().find(".btn.remove");
-                const itemQty = $("tbody tr").last().find(".qty");
-                const itemCost = $("tbody tr").last().find(".cost");
 
-                let unitCost =
-                    parseInt(itemCost.text()) / parseInt(itemQty.val());
+        // Logic to clear inputs will go here
 
-                removeBnt.click(function () {
-                    $("tbody tr").last().remove();
-                });
-                itemQty.on("change", function () {
-                    itemCost.text($(this).val() * unitCost);
-                });
-            });
+        // Update data
+        orderItems.push(activeItem);
+        showOrderSummary(order);
+        // Create row
+        createTableRow(activeItem);
+        // Row objects created
+        const removeRowButton = $("tbody tr").last().find(".btn.remove");
+        const itemQty = $("tbody tr").last().find(".qty");
+        const itemCost = $("tbody tr").last().find(".cost");
+        // Delete a row when remove button is clicked
+        removeRowButton.click(function () {
+            let rowIndex = $(this).parents("tr").index();
+            $("tbody tr").get(rowIndex).remove();
+            // update data
+            orderItems.splice(rowIndex, 1);
+            // Refresh order summary
+            showOrderSummary(order);
+        });
+        // Change line total when quantity is changed
+        let unitCost = parseInt(itemCost.text()) / parseInt(itemQty.val());
+        itemQty.on("change", function () {
+            let cost = unitCost * parseInt($(this).val());
+            itemCost.text(cost);
+            // update data
+            let rowIndex = $(this).parents("tr").index();
+            orderItems[rowIndex].quantity = parseInt($(this).val());
+            // Refresh order summary
+            showOrderSummary(order);
+        });
     });
 });
