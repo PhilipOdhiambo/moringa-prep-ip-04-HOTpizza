@@ -11,7 +11,7 @@ This site if for HOTpizza inn where you order for your pizza online and have it 
 Any order you like is saved to a temporary cart until you are ready to checkout. You can see your order breakdown inclusive of shipping if you provide full address.
 
 ## DEMO
-Check our a live demo here
+Check our a live demo [here](https://philipodhiambo.github.io/moringa-prep-ip-04-HOTpizza/index.html#order-page)
 
 ### Languages used
 
@@ -24,8 +24,6 @@ Check our a live demo here
 - jQuery for javascript
 - Bootstrap for CSS
 
-### DEMO:
-Checkout the website [here](https://philipodhiambo.github.io/moringa-prep-ip-03-delani-studio/)
 
 ### HOW TO INSTALL
 
@@ -34,9 +32,9 @@ To get install on your machine follow these steps:
 1. On the command promp or termina run the commad
 
     ```
-    git clone https://github.com/PhilipOdhiambo/moringa-prep-ip-03-delani-studio.git
+    git clone https://github.com/PhilipOdhiambo/moringa-prep-ip-04-HOTpizza.git
     ```
-1. Enter into the cloned project using command `` cd moringa-prep-ip-03-delani-studio``
+1. Enter into the cloned project using command `` cd moringa-prep-ip-04-HOTpizza``
 
 ## Known bugs
 
