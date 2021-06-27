@@ -11,7 +11,7 @@ This site if for HOTpizza inn where you order for your pizza online and have it 
 Any order you like is saved to a temporary cart until you are ready to checkout. You can see your order breakdown inclusive of shipping if you provide full address.
 
 ## DEMO
-Check out a live demo [here](https://philipodhiambo.github.io/moringa-prep-ip-04-HOTpizza/index.html#order-page)
+Check out a live demo [here](https://philipodhiambo.github.io/moringa-prep-ip-04-HOTpizza/index.html)
 
 ### Languages used
 
