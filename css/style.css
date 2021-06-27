@@ -1,8 +1,28 @@
+
+body {
+    background-color: rgba(0, 0, 0, 0.61);
+}
+
+h2 {
+    color: white;
+}
+
+form h2 {
+    color: yellowgreen;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: whitesmoke;
+    background-color: rgba(255, 0, 0, 0.301);
+}
 .landing {
     background-image: url("../assets/backround-images/hawaiian-pizza.jpg");
-    height: 90vh;
     background-repeat: no-repeat;
     background-size: cover;
+    height: 100vh;
 }
 
 .hero {
@@ -31,7 +51,60 @@
     letter-spacing: 5px;
 }
 
-form .size .form-check {
+section.order {
+    background-color: burlywood;
+    padding: 5px;
+    margin: 2rem 3rem;
+    
+}
+.order {
+    background-color: khaki;
+    padding: 2rem;
+}
+
+.order-and-cart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    background-color: rgba(240, 230, 140, 0.857);
+}
+
+.form-check{
     display: inline-block;
-    margin: 20px;
+    width: 100px;
+}
+
+.form-control {
+    width: 200px;
+    height: inherit;
+}
+
+.delivery input {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+input.num-orders {
+    width: 5rem;
+    height: 2rem;
+}
+
+#add-to-cart {
+    float: right;
+}
+
+.cart {
+    background-color: rgba(240, 230, 140, 0.72);
+    align-self: flex-start;
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.cart table {
+    overflow-y: auto;
+    width: 100%;
+    background-color: white;
 }

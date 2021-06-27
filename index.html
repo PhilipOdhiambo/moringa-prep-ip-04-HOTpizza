@@ -24,16 +24,15 @@
         <title>Hot Pizza</title>
     </head>
     <body>
-        <!-- Header -->
-        <div class="container-fluid">
-            <header>
-                <h4>HOTpizza</h4>
-            </header>
-        </div>
+         <!-- Header -->
 
         <!------------------------------- Landing Page -------------------------->
 
         <section class="landing">
+            <header class="container-fluid">
+                <div><h1>HOTpizza</h1></div>
+            </header>
+
             <div class="container">
                 <div class="hero">
                     <div class="hero-content">
@@ -43,9 +42,9 @@
                         <h3>Have It Delivered While HOT</h3>
                     </div>
                     <div class="hero-action">
-                        <button class="btn btn-primary">
-                            Checkout Our Range...
-                        </button>
+                        <a class="btn btn-primary" href="index.html#order-page">
+                            <h3>CHECK OUR MENU &DownArrow;</h3>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -53,186 +52,85 @@
 
         <!--=================================== Order Page ==============================-->
 
-        <section class="order">
-            <div class="container">
-                <h2>ORDER</h2>
-                <div class="row">
-                    <div class="col-6">
-                        <!------------------ Order form ---------------- -->
-                        <form id="form-order" action="">
-                            <span>Select Pizza Size:</span>
-                            <div class="row size">
-                                <div class="col-12">
-                                    <div class="form-check">
-                                        <input
-                                            class="input form-check-input"
-                                            type="radio"
-                                            name="size"
-                                            value="large"
-                                            id="size-large"
-                                        />
-                                        <label
-                                            class="form-check-label"
-                                            for="size-large"
-                                        >
-                                            Large
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input
-                                            class="input form-check-input"
-                                            type="radio"
-                                            name="size"
-                                            value="medium"
-                                            id="size-medium"
-                                        />
-                                        <label
-                                            class="form-check-label"
-                                            for="size-medium"
-                                        >
-                                            Medium
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input
-                                            class="input form-check-input"
-                                            type="radio"
-                                            name="size"
-                                            value="small"
-                                            id="size-small"
-                                        />
-                                        <label
-                                            class="form-check-label"
-                                            for="size-small"
-                                        >
-                                            Small
-                                        </label>
-                                    </div>
+        <section id="order-page" class="order-page">
+            <div class="container-fluid">
+                <div class="row order-and-cart">
+                    <div class="col-lg-5 order">
+                        <form id="form-order" class="form ">
+                            <h2>MAKE AN ORDER</h2>
+                            <div class="pizza-size form-group">
+                                <h6>Choose the size</h6>
+                                 <div class="form-check">
+                                    <input id="check1" class="input form-check-input" type="radio" name="size"value="large"/>
+                                    <label for="check1" class="form-label">Large</label>
+                                </div>
+                                <div class="form-check">
+                                    <input id="check2" class="input form-check-input" type="radio" name="size"value="medium"/>
+                                    <label for="check2" class="form-check-label" >Medium</label>
+                                </div>
+                                <div class="form-check">
+                                    <input id="check3" class="input form-check-input" type="radio" name="size"value="small"/>
+                                    <label for="check3" class="form-check-label" >Small</label>
+                                </div>
+
+                            </div>
+                            <div class="pizza-crust form-group">
+                                <h6>Select Crust type:</6>
+                                <select class="input crust form-control" name="crust" id="crust">
+                                    <option value="">---select---</option>
+                                    <option value="crispy">Crispy</option>
+                                    <option value="stuffed">Stuffed</option>
+                                    <option value="gluten-free">Gluten-free</option>
+                                </select>
+                            </div>
+                            
+                            <div class="pizza-toppings form-group">
+                                <h6>Choose Tooping(s):</h6>
+                                <div class="form-check">
+                                    <input id="topping-mushroom" class="input topping" type="checkbox" name="topping" value="mushroom"/>
+                                    <label for="topping-mushroom" class="form-check-label">Mushroom</label>
+                                </div>
+                                <div class="form-check">
+                                    <input id="topping-sausage" class="input topping" type="checkbox" name="topping" value="sausage"/>
+                                    <label for="topping-sausage" class="form-check-label">Sausage</label>
+                                </div>
+                                <div class="form-check">
+                                    <input id="topping-tomato" class="input topping" type="checkbox" name="topping" value="tomato"/>
+                                    <label for="topping-tomato" class="form-check-label">Tomato</label>
+                                </div>
+                                <div class="form-check">
+                                    <input id="topping-chicken" class="input topping" type="checkbox" name="topping" value="chicken"/>
+                                    <label for="topping-chicken" class="form-check-label">Chicken</label>
+                                </div>
+                                <div class="form-check">
+                                    <input id="topping-cucumber" class="input topping" type="checkbox" name="topping" value="cucumber"/>
+                                    <label for="topping-cucumber" class="form-check-label">Cucumber</label>
                                 </div>
                             </div>
-                            <label class="form-label" for="crust"
-                                >Select Crust type:</label
-                            >
-                            <select
-                                class="input crust form-control"
-                                name="crust"
-                                id="crust"
-                            >
-                                <option value="">---select---</option>
-                                <option value="crispy">Crispy</option>
-                                <option value="stuffed">Stuffed</option>
-                                <option value="gluten-free">Gluten-free</option>
-                            </select>
-                            <span>Choose topping(s):</span>
-                            <div class="row toppings">
-                                <div class="col-12">
-                                    <div class="form-check">
-                                        <input
-                                            class="input topping"
-                                            type="checkbox"
-                                            name="topping"
-                                            value="mushroom"
-                                            id="topping-mushroom"
-                                        />
-                                        <label
-                                            class="form-check-label"
-                                            for="topping-mushroom"
-                                        >
-                                            Mushroom
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input
-                                            class="input topping"
-                                            type="checkbox"
-                                            name="topping"
-                                            value="tomato"
-                                            id="topping-tomato"
-                                        />
-                                        <label
-                                            class="form-check-label"
-                                            for="topping-tomato"
-                                        >
-                                            Tomato
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input
-                                            class="input topping"
-                                            type="checkbox"
-                                            name="topping"
-                                            value="chicken"
-                                            id="topping-chicken"
-                                        />
-                                        <label
-                                            class="form-check-label"
-                                            for="topping-chicken"
-                                        >
-                                            Chicken
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input
-                                            class="input topping"
-                                            type="checkbox"
-                                            name="topping"
-                                            value="sausage"
-                                            id="topping-sausage"
-                                        />
-                                        <label
-                                            class="form-check-label"
-                                            for="topping-sausage"
-                                        >
-                                            Sausage
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input
-                                            class="input topping"
-                                            type="checkbox"
-                                            name="topping"
-                                            value="cucumber"
-                                            id="topping-cucumber"
-                                        />
-                                        <label
-                                            class="form-check-label"
-                                            for="topping-cucumber"
-                                        >
-                                            Cucumber
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <label class="form-label" for="order-qty"
-                                        >Number of Orders</label
-                                    >
-                                    <input
-                                        type="number"
-                                        class="input num-orders"
-                                        name="order-qty"
-                                        value="1"
-                                        id="order-qty"
-                                        min="1"
-                                    />
-                                </div>
+                            
+                            <div class="form-group">
+
+                                <label class="form-label" for="order-qty">Number of Orders</label>
+                                <input type="number" class="input num-orders form-control" name="order-qty" value="1" id="order-qty" min="1"/>
+                                <button id="add-to-cart" class="btn btn-primary">Add to cart</button>
                                 <div class="col-6">
                                     <label for="price">Price(Ksh): </label>
                                     <input type="number" id="price" readonly />
                                 </div>
                             </div>
-                            <button id="add-to-cart" class="btn btn-primary">
-                                Add to cart
-                            </button>
+                            <div class="delivery">
+                                <!-- Delivery info -->
+                                <p>Delivery Adress</p>
+                                <input type="text" name="delivery-name" id="delivery-name" placeholder="Customer name"/>
+                                <input type="text" name="delivery-phone" id="delivery-phone" placeholder="Customer phone"/>
+                                <input type="text" name="delivery-address" id="delivery-address" placeholder="Customer address"/>
+                            </div>
+                             
                         </form>
-                        <!-------------- End  order-form -->
                     </div>
-                </div>
-                <!---------------- Cart -------- -->
-                <h2>Cart</h2>
-                <div class="row cart">
-                    <div class="col-6">
+                    <!-- Cart -->
+                    <div class="col-7 cart">
+                         <h2 style="text-align: center">Cart</h2>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -245,66 +143,44 @@
                             </thead>
                             <tbody></tbody>
                         </table>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <label>
+                                    Order cost:
+                                    <input class="form-control" type="number" id="orders-cost" readonly/>
+                                </label>
+                                <label>
+                                    Shipping cost:
+                                    <input class="form-control" type="number" id="delivery-cost" readonly/>
+                                </label>
+                                <label>
+                                    Total cost:
+                                    <input class="form-control" type="number" id="total-cost" readonly/>
+                                </label>
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-4"></div>
+                            <div class="col-4">
+                                  <button class="btn btn-success">Submit</button>
+                            </div>
+                            <div class="col-4"></div>
+                          
+                        </div>
+                        
                     </div>
                 </div>
-                <!-- Order Summary and alert box -->
-                <h2>Order Summary</h2>
-                <div class="row summary">
-                    <div class="col-4">
-                        <div class="row orders-cost">
-                            <div class="col-6">
-                                <label class="form-label" for="orders-cost"
-                                    >Cost of Order:</label
-                                >
-                            </div>
-                            <div class="col-6">
-                                <input
-                                    class="form-control"
-                                    type="number"
-                                    id="orders-cost"
-                                    readonly
-                                />
-                            </div>
-                        </div>
-                        <div class="row delivery-cost">
-                            <div class="col-6">
-                                <label class="form-label" for="delivery-cost"
-                                    >Cost of Delivery:</label
-                                >
-                            </div>
-                            <div class="col-6">
-                                <input
-                                    class="form-control"
-                                    type="number"
-                                    id="delivery-cost"
-                                    readonly
-                                />
-                            </div>
-                        </div>
-                        <div class="row total-cost">
-                            <div class="col-6">
-                                <label class="form-label" for="total-cost"
-                                    >ORDER TOTAL:</label
-                                >
-                            </div>
-                            <div class="col-6">
-                                <input
-                                    class="form-control"
-                                    type="number"
-                                    id="total-cost"
-                                    readonly
-                                />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-5 alert-box"></div>
-                </div>
-                <!-- Submit order -->
-                <button class="btn btn-success">Submit</button>
             </div>
         </section>
-
-        <!-- Link custom javascript -->
         <script src="js/script.js"></script>
     </body>
 </html>
+
+
+
+
+
+
+
+

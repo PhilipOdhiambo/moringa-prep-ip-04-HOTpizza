@@ -10,7 +10,7 @@ function Order() {
         deliveryContact: "",
         deliveryAdress: "",
         deliveryPhone: null,
-        deliveryCost: null,
+        deliveryCost: 200,
     };
 }
 
@@ -137,10 +137,11 @@ $(document).ready(function () {
     /* update orderItem when any form input change*/
 
     $("#form-order .input").on("change", function () {
-        var toppings = [];
+        var toppings = [];        
 
         $("#form-order .input[name=topping]:checked").each(function () {
-            toppings.push(this.value);
+            let topping = $(this).val()
+            toppings.push(topping)
         });
 
         var orderQty = parseInt(quantityInput.val());
@@ -191,6 +192,7 @@ $(document).ready(function () {
             let rowIndex = $(this).parents("tr").index();
             orderItems[rowIndex].quantity = parseInt($(this).val());
             // Refresh order summary
+            console.log(order.orderSummary())
             showOrderSummary(order);
         });
     });
