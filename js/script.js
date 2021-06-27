@@ -10,7 +10,7 @@ function Order() {
         deliveryContact: "",
         deliveryAdress: "",
         deliveryPhone: null,
-        deliveryCost: 200,
+        deliveryCost: null,
     };
 }
 
@@ -24,9 +24,7 @@ Order.prototype.orderSummary = function () {
         });
     }
 
-    let deliveryCost = !(this.delivery.deliveryCost === null)
-        ? this.delivery.deliveryCost
-        : 0;
+    let deliveryCost = validAddress() ? 200 : 0
     let orderTotal = orderItemsTotal + deliveryCost;
 
     let deliveryAdress = "";
@@ -119,6 +117,15 @@ function createTableRow(data) {
     );
 }
 
+function validAddress() {
+    
+    if ($("#delivery-address").val().length > 0 && $("#delivery-phone").val().length > 0 && $("#delivery-name").val().length) {
+        return true
+    } else {
+        return false
+    }
+}
+
 /* -------------------- Logic -------------------------- */
 
 $(document).ready(function () {
@@ -192,8 +199,34 @@ $(document).ready(function () {
             let rowIndex = $(this).parents("tr").index();
             orderItems[rowIndex].quantity = parseInt($(this).val());
             // Refresh order summary
-            console.log(order.orderSummary())
             showOrderSummary(order);
         });
     });
+
+    /* Monitor change in address */
+
+    $(".address").on('change', function () {
+        if (validAddress()) {
+            showOrderSummary(order);
+       }
+    })
+
+    /* Submit Order */
+    $("#submit-order").click(function () {
+
+        if (validAddress()) {
+            alert(`
+            Thanks for Ordering from our store. Your order will be delivered to your  address
+            `)
+
+            location.reload()
+        } else {
+            alert(`
+            You have not provided shipping Address
+            Your order cannot be saved`)
+        }
+
+
+
+    })
 });
