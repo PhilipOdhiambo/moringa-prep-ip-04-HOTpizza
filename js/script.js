@@ -52,11 +52,11 @@ function OrderItem(size, crust, toppings, quantity = 1) {
 /* OrderItem Methods   */
 
 OrderItem.prototype.orderItemCost = function () {
-    var costFactor = 1;
+    var costFactor = 200;
     if (this.size === "medium") {
-        costFactor = 1.5;
+        costFactor *= 1.5;
     } else if (this.size === "large") {
-        costFactor = 1.8;
+        costFactor *= 1.8;
     }
 
     var crustCost = this.crust
@@ -70,23 +70,23 @@ OrderItem.prototype.orderItemCost = function () {
         });
     }
 
-    return (crustCost + toppingsCost) * costFactor * this.quantity;
+    return (crustCost + toppingsCost + costFactor) * this.quantity;
 };
 
 /* ----------------------------------- Data  ----------------------------- */
 
 var crusts = [
     { name: "crispy", cost: 200 },
-    { name: "stuffed", cost: 200 },
-    { name: "gluten-free", cost: 200 },
+    { name: "stuffed", cost: 100 },
+    { name: "gluten-free", cost: 250 },
 ];
 
 var toppings = [
-    { name: "chicken", cost: 300 },
-    { name: "mushroom", cost: 300 },
-    { name: "cucumber", cost: 300 },
-    { name: "tomato", cost: 300 },
-    { name: "sausage", cost: 300 },
+    { name: "chicken", cost: 200 },
+    { name: "mushroom", cost: 250 },
+    { name: "cucumber", cost: 100 },
+    { name: "tomato", cost: 100 },
+    { name: "sausage", cost: 200 },
 ];
 
 /* ================================= FRONTEND ======================= */

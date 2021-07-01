@@ -62,15 +62,15 @@
                                 <h6>Choose the size</h6>
                                  <div class="form-check">
                                     <input id="check1" class="input form-check-input" type="radio" name="size"value="large"/>
-                                    <label for="check1" class="form-label">Large</label>
+                                    <label for="check1" class="form-label">Large(ksh.360)</label>
                                 </div>
                                 <div class="form-check">
                                     <input id="check2" class="input form-check-input" type="radio" name="size"value="medium"/>
-                                    <label for="check2" class="form-check-label" >Medium</label>
+                                    <label for="check2" class="form-check-label" >Medium(ksh.300)</label>
                                 </div>
                                 <div class="form-check">
-                                    <input id="check3" class="input form-check-input" type="radio" name="size"value="small"/>
-                                    <label for="check3" class="form-check-label" >Small</label>
+                                    <input id="check3" class="input form-check-input" type="radio" checked name="size"value="small"/>
+                                    <label for="check3" class="form-check-label" >Small(ksh.200)</label>
                                 </div>
 
                             </div>
@@ -78,9 +78,9 @@
                                 <h6>Select Crust type:</6>
                                 <select class="input crust form-control" name="crust" id="crust">
                                     <option value="">---select---</option>
-                                    <option value="crispy">Crispy</option>
-                                    <option value="stuffed">Stuffed</option>
-                                    <option value="gluten-free">Gluten-free</option>
+                                    <option value="stuffed">Stuffed (ksh.100)</option>
+                                    <option value="crispy">Crispy (ksh.200)</option>
+                                    <option value="gluten-free">Gluten-free (ksh.250)</option>
                                 </select>
                             </div>
                             
@@ -88,23 +88,23 @@
                                 <h6>Choose Tooping(s):</h6>
                                 <div class="form-check">
                                     <input id="topping-mushroom" class="input topping" type="checkbox" name="topping" value="mushroom"/>
-                                    <label for="topping-mushroom" class="form-check-label">Mushroom</label>
+                                    <label for="topping-mushroom" class="form-check-label">Mushroom (ksh.250)</label>
                                 </div>
                                 <div class="form-check">
                                     <input id="topping-sausage" class="input topping" type="checkbox" name="topping" value="sausage"/>
-                                    <label for="topping-sausage" class="form-check-label">Sausage</label>
+                                    <label for="topping-sausage" class="form-check-label">Sausage(ksh.200)</label>
                                 </div>
                                 <div class="form-check">
                                     <input id="topping-tomato" class="input topping" type="checkbox" name="topping" value="tomato"/>
-                                    <label for="topping-tomato" class="form-check-label">Tomato</label>
+                                    <label for="topping-tomato" class="form-check-label">Tomato(ksh.100)</label>
                                 </div>
                                 <div class="form-check">
                                     <input id="topping-chicken" class="input topping" type="checkbox" name="topping" value="chicken"/>
-                                    <label for="topping-chicken" class="form-check-label">Chicken</label>
+                                    <label for="topping-chicken" class="form-check-label">Chicken(ksh.200)</label>
                                 </div>
                                 <div class="form-check">
                                     <input id="topping-cucumber" class="input topping" type="checkbox" name="topping" value="cucumber"/>
-                                    <label for="topping-cucumber" class="form-check-label">Cucumber</label>
+                                    <label for="topping-cucumber" class="form-check-label">Cucumber(ksh.100)</label>
                                 </div>
                             </div>
                             
@@ -113,8 +113,8 @@
                                 <label class="form-label" for="order-qty">Number of Orders</label>
                                 <input type="number" class="input num-orders form-control" name="order-qty" value="1" id="order-qty" min="1"/>
                                 <button id="add-to-cart" class="btn btn-primary">Add to cart</button>
-                                <div class="col-6">
-                                    <label for="price">Price(Ksh): </label>
+                                <div class="col-6 mt-2">
+                                    <label for="price">Total(Ksh): </label>
                                     <input type="number" id="price" readonly />
                                 </div>
                             </div>
